@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="webapp" default="check">
+    <description>Verifie qu'il n'y a pas d'url en dur dans le code</description>
+
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+
+    <!-- prefix to access environment variables -->
+    <!-- environment variables are then accessible via ${env.XXX}-->
+    <property environment="env" />
+
+    <!-- global properties -->
+    <property name="target_path" value="${basedir}/target/" />
+    <property name="search_pattern" value="${env.CONFPJ_CHECK_HARD_CODED_URL_PATTERN}" />
+
+    <target name="check_file" description="Check hard coded url in given file">
+        <echo message="Checking file ${file}" />
+        <loadfile property="file_content" srcFile="${file}" />
+        <fail message="Regex '${search_pattern}' found in ${file}">
+            <condition>
+                <matches string="${file_content}" pattern="${search_pattern}" casesensitive="false" />
+            </condition>
+        </fail>
+    </target>
+
+    <target name="check" description="Check files for hard coded url">
+        <echo message="Check files for hard coded url with pattern ${search_pattern}" />
+        <foreach target="check_file" param="file">
+            <path>
+                <fileset dir="${basedir}/src/main/" />
+                <fileset dir="${basedir}/target/generated/" erroronmissingdir="false" />
+                <fileset dir="${basedir}/target/generated-sources/" erroronmissingdir="false" />
+                <fileset dir="${basedir}/target/generated-resources/" erroronmissingdir="false" />
+            </path>
+        </foreach>
+    </target>
+
+</project>

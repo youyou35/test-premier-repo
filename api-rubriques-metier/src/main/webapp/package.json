@@ -1,0 +1,14 @@
+{
+    "name":"api-rubriques-2",
+    "version":"2.5.3",
+    "private":true,
+    "description":"Gestion des rubriques",
+    "dependencies":{
+        "express":"4.x",
+        "mongodb":"1.x",
+        "log4js":"0.x",
+        "memory-cache":"0.1.x",
+        "body-parser": "1.x",
+        "async": "1.2.1"        
+    }
+}

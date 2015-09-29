@@ -1,0 +1,5 @@
+{
+    "meta_package" : ["new_portail"],
+    "vm_type": "cd_nodejs",
+    "fifo"	: true
+}

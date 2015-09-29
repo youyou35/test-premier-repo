@@ -1,0 +1,131 @@
+# ########################################################################################################################################
+#                                   Fichier d'input pour les tests de l'API                                                    #
+# ########################################################################################################################################
+
+# Note :  Les lignes vides (réduites à un retour chariot) ou commençant par # ne sont pas prises en compte
+
+
+# Mutualiser le script groovy pour toutes les requêtes du projet :
+
+
+# Importer la TestSuite  Launcher-Library.xml
+
+# Sinon effectuer manuellement les étapes suivantes
+# 1) Définir une nouvelle TestSuite à la racine du projet nommé "Launcher Library",
+# 2) disable la TestSuite Launcher Library pour ne pas l'exécuter,
+# 3) définir un TestCase dans "Launcher Library" nommé "Launcher",
+# 4) définir un Script Groovy dans ce TestCase nommé "Launcher",
+
+# Mettre à jour si besoin
+# 5) coller le contenu du fichier script.groovy dans ce step, modifier la ligne File propertyFileName = new File(projectPath + "/wsPartenaire.properties") avec le nom du fichier properties
+# 6) pour chacun des tests, utiliser le contenu du fichier launcher.groovy pour utiliser le script commun.
+
+
+
+
+# 1/ Paramètrage des requêtes
+# ---------------------------
+
+# La première ligne détectée commençant par id_test; est utilisée pour les paramètres de la requête. Il est possible de redéfinir cette ligne pour un cas de test spécifique,
+# si après l'id du test, la colonne contient id_test. Par exemple :
+# API_PRO_01;id_test;what;where;max;page;sort;return_urls;map_height;map_width;seo;proximity;app_id_unknown;app_key_unknown;result
+# Que ce soit pour la ligne paramètre standard ou une redéfinition, les éléments compris entre la première et la dernière colonne (exclus) sont utilisés.
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# 2/ Signification des champs
+# ---------------------------
+
+# première col. : id_test : le test de cet id jouera l'ensemble des requêtes associées
+# ... col. suivantes ... : les paramètres de la requête, contruit en fonction de la ligne paramètre
+# dernière col. : l'attendu du test
+# séparateur de champs : ";"
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# 3/ Syntaxe du champs résultats
+# ------------------------------
+
+# Il est possible de tester plusieurs attendus en un seul test, il suffit de séparer les différents cas par des " || ".
+
+# Un test est défini par 3 champs :
+
+# nom_balise :: type_test :: value
+# nom_balise : le nom de la balise à rechercher dans le fichier xml
+# type_test : parmi {equal, regexp, url, encrypturl, tab, taburl, eval, evalList, anyList, everyList, nill, isSortedList}
+# ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# 4/ les types de contrôles
+# -------------------------
+
+# equal => égalité entre le contenu de la balise xml et value
+# regexp => matche du type resgexp entre le contenu de la balise xml et value
+# url => permet de vérifier une url, si res code ==200 après appel, le test est passant
+# encrypturl => permet de vérifier une url cryptée type speeddate, appelle l'url, si res code ==200 le test est passant, si le paramètre == nill, seul le res code est vérifié, il est possible de positionner une regexp pour comparer l'URL d'arrivée
+# tab => permet de vérifier un ensemble de valeur, les values doivent être séparer par des ">>"
+# Par exemple : pour un xml du type <root><urls><node>content1</node><node>content2</node></urls></root>
+# node :: tab :: content1>>content2 sera OK
+# node :: tab :: content1>>notgood sera KO
+# taburl => permet de vérifier une liste d'url
+# eval => modifie la façon de recherche l'élément xml dans la reponse, effectue l'évaluation de response.<nom_balise> puis le compare avec la value (du type regexp)
+# evalList => modifie la façon de rechercher l'élément xml dans la reponse, effectue l'évaluation de response.<chemin>.<nom_balise>[.list() si xml] puis le compare avec la value (du type liste groovy)
+# anyList => verifie qu'une liste contient au moins fois l'élément (regexp possible)
+# everyList => verifie que chacun des éléments de la liste correspond à un pattern
+# isSortedList => vérifie qu'une liste est triée paramètre attendu DESC ou ASC (descendant ou ascendant) [Nouveau !]
+# nill => permet de vérifier qu'un élément n'est pas présent, exemple : videos_url :: nill :: nill, indique que <videos_url>...</videos_url> ne doit pas être présent
+
+
+# ########################################################################################################################################
+#                                                  Inputs pour la méthode par EPJ                                                        #
+# ########################################################################################################################################
+
+
+# Paramètres de la requête
+
+# #######################################################################################################################################################################
+# Parameter      # Description                          # Mandatory #  Type  # Value(s)
+# #######################################################################################################################################################################
+#
+# #######################################################################################################################################################################
+
+# ------------------------
+# INT000-LISTE-RUB-PAGINEE
+# ------------------------
+
+# Définitions des paramètres
+INT000-LISTE-RUB-PAGINEE;id_test;offset;limit;resultat
+# vérifie la présence des metas
+INT000-LISTE-RUB-PAGINEE;5;10;_meta._pagination._links._first :: eval :: http.*\/api-rubriques-[0-9]*\/rubriques.*
+INT000-LISTE-RUB-PAGINEE;5;10;_meta._pagination._links._last :: eval :: http.*\/api-rubriques-[0-9]+\/rubriques.*offset=[0-9]+&limit=10
+INT000-LISTE-RUB-PAGINEE;5;10;_meta._pagination._links._next :: eval :: http.*\/api-rubriques-[0-9]+\/rubriques.*offset=15&limit=10
+INT000-LISTE-RUB-PAGINEE;5;10;_meta._pagination._links._prev :: eval :: http.*\/api-rubriques-[0-9]+\/rubriques.*offset=0&limit=10
+
+# ------------------------
+# INT000-CODE-AN9
+# ------------------------
+
+# Définitions des paramètres
+INT000-CODE-AN9;id_test;an9;resultat
+INT000-CODE-AN9;54053000;code_AN9 :: eval :: 54053000
+
+# ------------------------
+# INT000-CODE-AN8
+# ------------------------
+
+# Définitions des paramètres
+INT000-CODE-AN8;id_test;an8;resultat
+INT000-CODE-AN8;693780;code_AN8 :: eval :: 693780
+
+
+# ------------------------
+# INT000-LISTE-RUB
+# ------------------------
+
+
+# Définitions des paramètres
+# id_test : juste pour dire qu'on fait un test
+# resultat : c'est la qu'on met l'assertion par la suite
+# entre les deux on peut avoir des paramètres utilisables pour l'appel ou l'assertion.
+# ici, y en a pas.
+
+# Teste la présence du code 00000079 dans la liste des rubriques renvoyées
+INT000-LISTE-RUB;id_test;resultat
+INT000-LISTE-RUB;code_AN9 :: anyList :: 00000079

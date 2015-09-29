@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>fr.pagesjaunes.nodejs</groupId>
+    <artifactId>api-rubriques</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>api-rubriques-deployit</artifactId>
+  <name>${project.artifactId}</name>
+  <packaging>pom</packaging>
+
+  <profiles>
+    <profile>
+      <id>deployit</id>
+      <properties>
+        <!-- possible values : generate-deployment-package, import, deploy -->
+        <deployit.action>generate-deployment-package</deployit.action>
+      </properties>
+      <build>
+        <plugins>
+          <!-- > Q&D WORKAROUND FOR https://jira.codehaus.org/browse/MNG-5522 -->
+          <plugin>
+            <groupId>org.codehaus.groovy.maven</groupId>
+            <artifactId>gmaven-plugin</artifactId>
+            <version>1.0</version>
+            <executions>
+              <execution>
+                <id>set-custom-property</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>execute</goal>
+                </goals>
+                <configuration>
+                  <source>
+                    project.properties.setProperty('project.parent.name', project.parent.name)
+                  </source>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- < Q&D WORKAROUND FOR https://jira.codehaus.org/browse/MNG-5522 -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>import</id>
+                <phase>package</phase>
+                <configuration>
+                  <target>
+                    <property name="deployit.finalName" value="${project.parent.name}-${project.version.majorVersion}" />
+                    <property name="deployit.tag.webapp" value="nodejs-${project.parent.name}" />
+                    <property name="deployit.version" value="${project.version}" />
+                    <property name="dit.action" value="${deployit.action}" />
+                    <property name="dit.targetenvid" value="${deployit.targetenvid}" />
+                    <ant antfile="build.xml" target="main" />
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

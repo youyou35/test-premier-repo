@@ -1,0 +1,19 @@
+<udm.DeploymentPackage version="@@deployit.version@@" application="@@deployit.finalName@@">
+  <deployables>
+    <pj.Folder name="nodejs-@@deployit.finalName@@" file="@@deployit.finalName@@">
+      <targetDirectory>/opt/ciweb2g/applis/nodejs</targetDirectory>
+      <targetFile>@@deployit.finalName@@</targetFile>
+      <targetUser>deployit:</targetUser>
+      <targetMode>+x</targetMode>
+      <createTargetPath>true</createTargetPath>
+      <preserveExistingFiles>false</preserveExistingFiles>
+      <restartRequired>true</restartRequired>
+      <targetPathShared>false</targetPathShared>
+      <scanPlaceholders>false</scanPlaceholders>
+      <tags>
+        <value>@@deployit.tag.webapp@@</value>
+        <value>nodejs</value>
+      </tags>
+    </pj.Folder>
+  </deployables>
+</udm.DeploymentPackage>

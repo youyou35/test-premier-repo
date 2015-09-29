@@ -1,0 +1,192 @@
+[
+	{
+		"version" : "2.5.3",
+		"comment" : ["Jira APIRUBRIQ-35 - Ajout cache-control max-age", "Jira APIRUBRIQ-36 - Prendre en compte le replicaset dans les parametres de connexion"],
+		"date" : "2015-09-21",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "2.5.2",
+		"comment" : ["Jira APIRUBRIQ-33 : Liberation des connexions du pool en production + temps de réponse"],
+		"date" : "2015-09-17",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "2.5.1",
+		"comment" : ["Jira APIRUBRIQ-29 : entêtes de réponses HTTP manquants"],
+		"date" : "2015-09-10",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "2.5.0",
+		"comment" : ["Jira APIRUBRIQ-25 : Mécanisme de switch de collection",
+					 "Jira APIRUBRIQ-26 : Migration technique Express 4+", 
+					 "Jira APIRUBRIQ-27 : Remplacer winston par log4js", 
+					 "Jira APIRUBRIQ-28 : Migration technique driver mongo 2.x"],
+		"date" : "2015-09-02",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "2.4.1",
+		"comment" : ["Jira APIRUBRIQ-23 : Parametrage mongodb"],
+		"date" : "2015-08-03",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "2.4.0",
+		"comment" : ["Ajout d'un filtre sur le libellé de rubrique"],
+		"date" : "2015-03-27",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "2.3.1",
+		"comment" : ["Modification du tri des requêtes find pour valider le test",
+					"Ajout d'une route pour flush cache (JIRA APIRUBRIQ-8)"],
+		"date" : "2015-03-02",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "2.3.0",
+		"comment" : ["Ajout des requêtes epub sur les thématiques (JIRA APIRUBRIQ-6)"],
+		"date" : "2015-01-29",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "2.2.0",
+		"comment" : ["Gestion des paramètres GET dans les requetes de type 'find' (JIRA APIRUBRIQ-3)"],
+		"date" : "2014-12-08",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "2.1.0",
+		"comment" : ["Ajout des routes au format Popact"],
+		"date" : "2014-10-13",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "2.0.0",
+		"comment" : ["Gestion du paramètre 'meta'", "Gestion des extra headers de Pagination", "Tests unitaires", "Utilisation d'un confHandler"],
+		"date" : "2014-05-23",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "1.1.8",
+		"comment" : ["0080599: Winston Log rotation","0080533: Technical Error (processing Mongo query) ne remonte pas le message d'erreur", "Remise en place du cache"],
+		"date" : "2013-12-19",
+		"author" : "Fabrice Depaulis"
+	},
+    {
+		"version" : "1.1.7",
+		"comment" : ["Ajout des traces en debug","Modification du module de log"],
+		"date" : "2013-12-19",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "1.1.6",
+		"comment" : ["Déplacement du set de l'entête json (mantis 80353)"],
+		"date" : "2013-12-17",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "1.1.5",
+		"comment" : ["Oubli paramètre lié au cache"],
+		"date" : "2013-12-16",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "1.1.4",
+		"comment" : ["Suppression du cache"],
+		"date" : "2013-12-16",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "1.1.3",
+		"comment" : ["Mise à jour de la durée du cache","Mise en place du cache pour les requêtes de type 'distinct'"],
+		"date" : "2013-11-18",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "1.1.2",
+		"comment" : ["Remplacement du cache par memory-cache","Rétablissement du changelog"],
+		"date" : "2013-11-12",
+		"author" : "Fabrice Depaulis"
+	},
+   	{
+		"version" : "1.1.1",
+		"comment" : ["Gestion du cache par node-cache","Séparation technique du DAO et de la couche d'appel REST"],
+		"date" : "2013-11-05",
+		"author" : "Fabrice Depaulis"
+	},
+   	{
+		"version" : "1.1.0",
+		"comment" : ["Suppression du fichier local de changelog","Modification de la page root (suppression des infos de changelog)","Ajout d'un launcher d'application pour fonctionnement en multi-core (applauncher.js)","Remplacement des tests sur stringify par des data.length","Découpage du module mongosearch pour factorisation du traitement des réponses (restHandler.js)"],
+		"date" : "2013-10-25",
+		"author" : "Fabrice Depaulis"
+	},
+   	{
+		"version" : "1.0.0",
+		"comment" : ["Version stable pour déploiement"],
+		"date" : "2013-10-18",
+		"author" : "Fabrice Depaulis"
+	},
+   	{
+		"version" : "0.5.3",
+		"comment" : ["Adding Warn logs to 404 code","Adding error logs to 500 code","New url for getting rubrique by an9 and an8 codes"],
+		"date" : "2013-10-07",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "0.5.2",
+		"comment" : ["Adding the ws name to the forbidden routes (put, post, delete) and unhandled routes"],
+		"date" : "2013-10-04",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "0.5.1",
+		"comment" : ["Splitting the conf file for a separated log one"],
+		"date" : "2013-10-04",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "0.5.0",
+		"comment" : ["Adding log management with Winston module"],
+		"date" : "2013-10-04",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "0.4.0",
+		"comment" : ["Distinction entre les méthodes find et findOne pour retourner un tableau ou un objet simple"],
+		"date" : "2013-10-03",
+		"author" : "Fabrice Depaulis"
+	},
+    {
+		"version" : "0.3.1",
+		"comment" : ["[Defect] Login and password taken into account for mongo db connection"],
+		"date" : "2013-10-01",
+		"author" : "Fabrice Depaulis"
+	},
+   	{
+		"version" : "0.3.0",
+		"comment" : ["Paginated results with query string parameters (skip & limit) for FIND methods only. Usage : url/path?start=value&limit=" ],
+		"date" : "2013-09-30",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "0.2.0",
+		"comment" : ["Modularisation of mongosearch module","Documentation handled in a class" ],
+		"date" : "2013-09-27",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "0.1.0",
+		"comment" : ["Add generic rest call for mongodb"],
+		"date" : "2013-09-20",
+		"author" : "Fabrice Depaulis"
+	},
+	{
+		"version" : "0.0.1",
+		"comment" : ["First version"],
+		"date" : "2013-09-14",
+		"author" : "Fabrice Depaulis"
+	}
+]

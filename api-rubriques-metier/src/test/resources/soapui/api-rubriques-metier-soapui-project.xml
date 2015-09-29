@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="API_RUBRIQUES" resourceRoot="" soapui-version="4.5.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Environment" value="Default"/>
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="TestSuite" value="TFEtape2Module"/>
+  <con:entry key="Report to Generate" value=""/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="soapui-setings.xml Password" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Ignore Errors" value="false"/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="Save Project" value="false"/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Export JUnit Results" value="false"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="Export All" value="false"/>
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="TestCase" value="MonTest"/>
+  <con:entry key="Print Report" value="false"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="Endpoint" value=""/>
+</xml-fragment>]]></con:setting></con:settings><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="{api.name}" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>${endpoint}</con:endpoint></con:endpoints></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="api-rubriques" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints/><con:resource name="/rubriques" path="/rubriques"><con:settings/><con:parameters/><con:method name="Method 1" method="GET"><con:settings/><con:parameters><con:parameter><con:name>limit</con:name><con:value>10</con:value><con:style>QUERY</con:style><con:default>10</con:default></con:parameter><con:parameter><con:name>offset</con:name><con:value>0</con:value><con:style>QUERY</con:style><con:default>0</con:default></con:parameter></con:parameters><con:request name="Request 1" mediaType="application/xml"><con:settings/><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method><con:method name="Method 2" method="GET"><con:settings/><con:parameters><con:parameter><con:name>offset</con:name><con:value>{offset}</con:value><con:style>QUERY</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:string</con:type><con:default>{offset}</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>limit</con:name><con:value>{limit]</con:value><con:style>QUERY</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:string</con:type><con:default>{limit]</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>meta</con:name><con:value>1</con:value><con:style>QUERY</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:string</con:type><con:default>1</con:default><con:path xsi:nil="true"/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:request name="Request 1" mediaType="application/xml"><con:settings/><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/rubriques/by_code_an8/{an8}" path="/rubriques/by_code_an8-{an8}"><con:settings/><con:parameters><con:parameter><con:name>an8</con:name><con:style>TEMPLATE</con:style><con:default>{an8}</con:default></con:parameter></con:parameters><con:method name="Method 1" method="GET"><con:settings/><con:parameters/><con:request name="Request 1" mediaType="application/xml"><con:settings/><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource><con:resource name="/rubriques/{an9}" path="/rubriques/{an9}"><con:settings/><con:parameters/><con:method name="Method 1" method="GET"><con:settings/><con:parameters><con:parameter><con:name>an9</con:name><con:value>an9</con:value><con:style>TEMPLATE</con:style><con:default>an9</con:default></con:parameter></con:parameters><con:request name="Request 1" mediaType="application/xml"><con:settings/><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="an9" value="{an9}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method></con:resource></con:interface><con:testSuite name="TFEtape2Module"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="INT000-CODE-AN9" searchProperties="true" id="1c37324e-336f-435c-9b43-fc082b397d79"><con:settings/><con:testStep type="groovy" name="launcher"><con:settings/><con:config><script>// get a reference to the library TestSuite
+library = testRunner.testCase.testSuite.project.testSuites["Launcher Library"]
+
+// find the module within the library
+module = library.testCases["Launcher"].testSteps["Launcher"]
+
+// initialise the library; which places an instance of Example in the context
+module.run(testRunner, context)
+
+// get the instance of example from the context.
+def launcher = context.launcher
+
+// run the method, with parameter
+log.info "launcher.execute() = " + launcher.execute("launcher")</script></con:config></con:testStep><con:testStep type="restrequest" name="REST Test Request json"><con:settings/><con:config service="api-rubriques" resourcePath="/rubriques/{an9}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Test Request json" mediaType="application/xml"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${endpoint}</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="an9" value="{an9}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>9b658a0d-9be7-4223-ade0-b1eda26f307c</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>baabe70f-b612-4926-8b3f-58c747f989db</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="INT000-CODE-AN8" searchProperties="true" id="0583634b-bcfb-4664-81f6-1f0e30a60cc4"><con:settings/><con:testStep type="groovy" name="launcher"><con:settings/><con:config><script>// get a reference to the library TestSuite
+library = testRunner.testCase.testSuite.project.testSuites["Launcher Library"]
+
+// find the module within the library
+module = library.testCases["Launcher"].testSteps["Launcher"]
+
+// initialise the library; which places an instance of Example in the context
+module.run(testRunner, context)
+
+// get the instance of example from the context.
+def launcher = context.launcher
+
+// run the method, with parameter
+log.info "launcher.execute() = " + launcher.execute("launcher")</script></con:config></con:testStep><con:testStep type="restrequest" name="REST Test Request json"><con:settings/><con:config service="api-rubriques" resourcePath="/rubriques/by_code_an8-{an8}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Test Request json" mediaType="application/xml"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${endpoint}</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="an9" value="{an9}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>9b658a0d-9be7-4223-ade0-b1eda26f307c</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>baabe70f-b612-4926-8b3f-58c747f989db</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="INT000-LISTE-RUB-PAGINEE" searchProperties="true" id="0d38f91a-b666-453a-8f42-bd939bd65b77"><con:settings/><con:testStep type="groovy" name="launcher"><con:settings/><con:config><script>// get a reference to the library TestSuite
+library = testRunner.testCase.testSuite.project.testSuites["Launcher Library"]
+
+// find the module within the library
+module = library.testCases["Launcher"].testSteps["Launcher"]
+
+// initialise the library; which places an instance of Example in the context
+module.run(testRunner, context)
+
+// get the instance of example from the context.
+def launcher = context.launcher
+
+// run the method, with parameter
+log.info "launcher.execute() = " + launcher.execute("launcher")</script></con:config></con:testStep><con:testStep type="restrequest" name="REST Test Request json"><con:settings/><con:config service="api-rubriques" resourcePath="/rubriques" methodName="Method 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Test Request json" mediaType="application/xml"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${endpoint}</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="an9" value="{an9}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>9b658a0d-9be7-4223-ade0-b1eda26f307c</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>baabe70f-b612-4926-8b3f-58c747f989db</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="INT000-LISTE-RUB" searchProperties="true" id="afa51985-417d-47b4-b0cb-c7eec788c3f2"><con:settings/><con:testStep type="groovy" name="launcher"><con:settings/><con:config><script>// get a reference to the library TestSuite
+library = testRunner.testCase.testSuite.project.testSuites["Launcher Library"]
+
+// find the module within the library
+module = library.testCases["Launcher"].testSteps["Launcher"]
+
+// initialise the library; which places an instance of Example in the context
+module.run(testRunner, context)
+
+// get the instance of example from the context.
+def launcher = context.launcher
+
+// run the method, with parameter
+log.info "launcher.execute() = " + launcher.execute("launcher")</script></con:config></con:testStep><con:testStep type="restrequest" name="REST Test Request json"><con:settings/><con:config service="api-rubriques" resourcePath="/rubriques" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Test Request json" mediaType="application/xml"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${endpoint}</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="an9" value="{an9}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>9b658a0d-9be7-4223-ade0-b1eda26f307c</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>baabe70f-b612-4926-8b3f-58c747f989db</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:testSuite name="TFEtape3Plateforme"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="INT000-CODE-AN9" searchProperties="true" id="666d3582-fed6-4c38-8a0c-2da3d380d4a8"><con:settings/><con:testStep type="groovy" name="launcher"><con:settings/><con:config><script>// get a reference to the library TestSuite
+library = testRunner.testCase.testSuite.project.testSuites["Launcher Library"]
+
+// find the module within the library
+module = library.testCases["Launcher"].testSteps["Launcher"]
+
+// initialise the library; which places an instance of Example in the context
+module.run(testRunner, context)
+
+// get the instance of example from the context.
+def launcher = context.launcher
+
+// run the method, with parameter
+log.info "launcher.execute() = " + launcher.execute("launcher")</script></con:config></con:testStep><con:testStep type="restrequest" name="REST Test Request json"><con:settings/><con:config service="api-rubriques" resourcePath="/rubriques/{an9}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Test Request json" mediaType="application/xml"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${endpoint}</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="an9" value="{an9}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>9b658a0d-9be7-4223-ade0-b1eda26f307c</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>baabe70f-b612-4926-8b3f-58c747f989db</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="INT000-CODE-AN8" searchProperties="true" id="87fb3c45-8933-4930-a64c-b5c3510312e3"><con:settings/><con:testStep type="groovy" name="launcher"><con:settings/><con:config><script>// get a reference to the library TestSuite
+library = testRunner.testCase.testSuite.project.testSuites["Launcher Library"]
+
+// find the module within the library
+module = library.testCases["Launcher"].testSteps["Launcher"]
+
+// initialise the library; which places an instance of Example in the context
+module.run(testRunner, context)
+
+// get the instance of example from the context.
+def launcher = context.launcher
+
+// run the method, with parameter
+log.info "launcher.execute() = " + launcher.execute("launcher")</script></con:config></con:testStep><con:testStep type="restrequest" name="REST Test Request json"><con:settings/><con:config service="api-rubriques" resourcePath="/rubriques/by_code_an8-{an8}" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Test Request json" mediaType="application/xml"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${endpoint}</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="an9" value="{an9}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>9b658a0d-9be7-4223-ade0-b1eda26f307c</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>baabe70f-b612-4926-8b3f-58c747f989db</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="INT000-LISTE-RUB-PAGINEE" searchProperties="true" id="0e80b172-6756-43da-b045-a5256a351863"><con:settings/><con:testStep type="groovy" name="launcher"><con:settings/><con:config><script>// get a reference to the library TestSuite
+library = testRunner.testCase.testSuite.project.testSuites["Launcher Library"]
+
+// find the module within the library
+module = library.testCases["Launcher"].testSteps["Launcher"]
+
+// initialise the library; which places an instance of Example in the context
+module.run(testRunner, context)
+
+// get the instance of example from the context.
+def launcher = context.launcher
+
+// run the method, with parameter
+log.info "launcher.execute() = " + launcher.execute("launcher")</script></con:config></con:testStep><con:testStep type="restrequest" name="REST Test Request json"><con:settings/><con:config service="api-rubriques" resourcePath="/rubriques" methodName="Method 2" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Test Request json" mediaType="application/xml"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${endpoint}</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="an9" value="{an9}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>9b658a0d-9be7-4223-ade0-b1eda26f307c</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>baabe70f-b612-4926-8b3f-58c747f989db</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="INT000-LISTE-RUB" searchProperties="true" id="58d3c02a-9c99-48c1-ae45-0af83862b63a"><con:settings/><con:testStep type="groovy" name="launcher"><con:settings/><con:config><script>// get a reference to the library TestSuite
+library = testRunner.testCase.testSuite.project.testSuites["Launcher Library"]
+
+// find the module within the library
+module = library.testCases["Launcher"].testSteps["Launcher"]
+
+// initialise the library; which places an instance of Example in the context
+module.run(testRunner, context)
+
+// get the instance of example from the context.
+def launcher = context.launcher
+
+// run the method, with parameter
+log.info "launcher.execute() = " + launcher.execute("launcher")</script></con:config></con:testStep><con:testStep type="restrequest" name="REST Test Request json"><con:settings/><con:config service="api-rubriques" resourcePath="/rubriques" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="REST Test Request json" mediaType="application/xml"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>${endpoint}</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="an9" value="{an9}" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>9b658a0d-9be7-4223-ade0-b1eda26f307c</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>baabe70f-b612-4926-8b3f-58c747f989db</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:testSuite name="Launcher Library" disabled="true"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Launcher" searchProperties="true"><con:settings/><con:testStep type="groovy" name="Launcher"><con:settings/><con:config><script><![CDATA[import java.io.File;
+import java.io.InputStream;
+import java.io.FileInputStream;
+import java.util.Properties;
+import com.eviware.soapui.support.*;
+
+//ReadFile
+import java.text.*;
+import jxl.*;
+import xls_utils.*;
+import java.util.Arrays;
+
+//RecupDonnees
+import java.util.*;
+import java.text.*;
+import com.eviware.soapui.impl.wsdl.teststeps.RestTestRequest;
+
+//verif_results
+import soapuiTools.soapui_utils.*
+import java.io.*;
+import org.w3c.dom.*;
+import javax.xml.parsers.*;
+import javax.xml.xpath.*;
+import com.eviware.soapui.*;
+import javax.crypto.*;
+import java.security.*;
+import javax.crypto.spec.*;
+
+//StoreResults
+import soapui_utils.*;
+import java.sql.*;
+import com.eviware.soapui.support.*;
+
+//Méthodes permettant de vérifier si une liste est triée
+List.metaClass.isSorted = { -> delegate == delegate.sort( false ){it.toString()} }
+List.metaClass.isReversed = { -> delegate == delegate.sort( false ){it.toString()}.reverse() }
+
+
+//Utilisée pour passer des éléments lors de l'utilisation du mot clef evalCode
+class Context{
+	def value
+	def log
+	def testsuiteProperties
+	def response
+	def Context(rIn,logIn, testsuitePropertiesIn, responseIn){
+		this.log = logIn
+		this.value = rIn
+		this.testsuiteProperties = testsuitePropertiesIn
+		this.response = responseIn
+	}
+}
+
+
+class Launcher
+{
+   def log
+   def context
+   def testRunner
+   def statusString = "";
+
+   // Class constructor with same case as Class name
+   def Launcher(logIn,contextIn,testRunnerIn)
+   {
+      this.log = logIn
+      this.context = contextIn
+      this.testRunner = testRunnerIn
+   }
+	def info(attendu,obtenu){
+		statusString +="  	   -- obtenu --> "+obtenu+"\n"
+		statusString +="  	   -- attendu --> "+attendu+"\n"
+			log.info("  	   -- obtenu --> "+obtenu )
+			log.info("  	   -- attendu --> "+attendu);
+	}
+	def info(Map messages){
+		for (message in messages){
+			statusString +="  	   -- "+message.key+" --> "+message.value+"\n"
+			log.info("  	   -- "+message.key+" --> "+message.value )
+		}
+	}
+   	def info(String str){
+		statusString += str+"\n"
+   		log.info str
+   	}
+
+   def execute(message)
+   {
+
+		GroovyUtils groovyUtils 	= new GroovyUtils(context)
+		def projectPath 		= groovyUtils.getProjectPath();
+
+		// on récupère le contenu du fichier de propriétés
+		File propertyFileName 			= new File(projectPath + "/api-rubriques-metier-soapui.properties")
+		InputStream inputstream 			= new FileInputStream(propertyFileName);
+		Properties testsuiteProperties 	= new Properties();
+
+		// chargement du contenu
+		testsuiteProperties.load(inputstream);
+
+		if(System.getenv("CONFPJ_SOAPUI_CD") == "true"){
+			context.setProperty("endpoint", testsuiteProperties.getProperty("endpointCD"));
+		}else{
+			context.setProperty("endpoint", testsuiteProperties.getProperty("endpoint"));
+		}
+		/**
+		 * ReadFile
+		 */
+		 // récupération de l'id du test
+		 // récupération de l'id du test
+		String testLabel 		= testRunner.testCase.getLabel();
+		String testID 			= testLabel.split(":")[0];
+		// récuperation du chemin du fichier
+		File fileInput	= new File(groovyUtils.getProjectPath() + "/"+testsuiteProperties.getProperty("inputfile"));
+		//System.properties.putAll(["http.proxyHost": "proxytest.services.local","http.proxyPort": "3128"])
+		ArrayList pNames; // header du csv
+		ArrayList<String[]> inputs = new ArrayList<String[]>();
+		fileInput.eachLine { line ->
+			if (!line.equals("") || !line.startsWith("#")){
+				def l = line.split(";(?! )");
+				//on ajoute le header => le premier element est id_test
+				if (l[0].equals("id_test"))
+					pNames = l;
+				// on garde que les lignes spécifiques à ce cas de test
+				if (l[0].equals(testID))
+					if (l[1].equals("id_test")){
+						// on redéfinit le header spécifiquement pour ce test
+						pNames = Arrays.copyOfRange(l, 1, l.length-1)
+					}else{
+						if (l[1].startsWith("generate_test_iterate")){
+							if (	l[1].contains("list")){
+								def listOfLists =  l[1].split(" :: ")
+								for (int j = 0; j <Eval.me(listOfLists[1]).size();j++){
+									def resul = Arrays.copyOfRange(l, 1, l.size())
+									for (int i = 1; i < listOfLists.size();i++){
+										def str = ""
+										if (Eval.me(listOfLists[i]).size()==Eval.me(listOfLists[1]).size()){
+											str = Eval.me(listOfLists[i])[j]
+										} else{
+											str = Eval.me(listOfLists[i])[0]
+										}
+										resul = resul.collect{ it.replace(("%var"+i).toString(), str )}
+									}
+									log.info resul
+									inputs.add(resul);
+								}
+
+
+							}else{
+								def ll = l[1].split(" :: ");
+								for (int i =Integer.parseInt(ll[1]); i<=Integer.parseInt(ll[2]);i++){
+									inputs.add(Arrays.copyOfRange(l, 1, l.size()).collect { it.replace("%i",i.toString()) })
+								}
+							}
+						}else{
+							inputs.add(l);
+						}
+					}
+			}
+		}
+
+		info "###### Informations ######\n"
+		info "      --> endpoint : "+context.getProperty("endpoint")+"\n";
+		info "      --> cas de test : "+testLabel+"\n";
+		info "      --> noms des paramètres : "+pNames+"\n";
+		info "      --> nombre de requêtes à jouer : "+inputs.size()+"\n";
+
+		/*log.info "###### Informations ######"
+		log.info "      --> endpoint : "+context.getProperty("endpoint");
+		log.info "      --> cas de test : "+testLabel;
+		log.info "      --> noms des paramètres : "+pNames;
+		log.info "      --> nombre de requêtes à jouer : "+inputs.size();*/
+		String statutReponse;
+		String requestName = "REST Test Request " + testsuiteProperties.getProperty("type")
+		// On boucle sur le tableau d'input
+		def nbreq = 0;
+		def resulSet = [] as Set;
+		for (String[] input : inputs){
+			RestTestRequest request = testRunner.testCase.getTestStepByName(requestName).getTestRequest();
+			nbreq++;
+			//on ajoute les paramètres de la requete
+			def actualInput = "| ";
+			for (int i =1;i<pNames.size();i++){
+				request.setPropertyValue(pNames.get(i), input[i]);
+
+				if (input[i] != ""){
+					actualInput += pNames.get(i)+" : "+input[i]+" | ";
+				}
+			}
+			info "###### Requête "+nbreq+" ######\n"
+			//log.info "###### Requête "+nbreq+" ######"
+			//log.info "	 Paramètres de la requête : "+actualInput;
+			info (["Paramètres de la requête" :actualInput]);
+			// les résultats attendus sont dans la dernière col. du csv d'input, on créée un dictionaire du type [element_xml:valeur]
+			def toCheck = [];
+			for (String s : input[input.length-1].split(" \\|\\| ")){
+				//toCheck.put(s.split(" :: ")[0], Arrays.copyOfRange(s.split(" :: "), 1, 3));
+				toCheck.add(s.split(" :: "))
+			}
+			info (["Nombre de tests à effectuer" :toCheck.size()]);
+			// on execute le step avec la requete REST
+			def step = testRunner.testCase.getTestStepByName(requestName);
+			// on recup la réponse
+			String StatusCode;
+			def response;
+			if (testsuiteProperties.getProperty("mode").equals("fichier")){
+				if (testsuiteProperties.getProperty("debug").equals("true")){
+					//log.info( "- mode fichier : "+testsuiteProperties.getProperty("xmlfile"))
+				}
+				response = new groovy.util.XmlSlurper().parse(new File(projectPath+"/inputs/"+testsuiteProperties.getProperty("xmlfile")));
+				StatusCode = "OK";
+			}else{
+				if (testsuiteProperties.getProperty("debug").equals("true")){
+					//log.info( "- mode ws")
+				}
+				StatusCode = testRunner.testCase.getTestStepByName(requestName).run(testRunner, context).getStatus(); // OK / FAILED
+				if (testsuiteProperties.getProperty("type").equals("json")){
+		 			response = new groovy.json.JsonSlurper().parseText(step.getProperty("response").value);
+				}else{
+					response = new groovy.util.XmlSlurper().parseText(step.getProperty("response").value);
+				}
+			}
+			//info (["StatusCode" :StatusCode]);
+
+			for (e in toCheck) {
+				statusString += "----------------------------"
+				info("Vérification de" : e, "type" :e[1])
+				boolean check = false;
+				switch ( e[1] ) {
+		    			case "equal":
+		    				info "The equal assert is deprecated, use eval instead"+"\n"
+						check = false
+						break
+					case "regexp":
+						info "The regexp assert is deprecated, use eval instead"+"\n"
+						check = false
+						break
+					case "tab" :
+						info "The tab assert is deprecated, use evalList, anyList or everyList instead"+"\n"
+						check = false;
+						break
+					case "tabregexp" :
+						info "The tab assert is deprecated, use evalList, anyList or everyList instead"+"\n"
+						check = false;
+						break
+					case "encrypturl" :
+						info "Vérifier des URL encryptées speeddata"+"\n"
+						def t = "x."+e[0];
+						String u = Eval.x(response,t)
+						String waited =  e[2];
+						info(["url" : u])
+						try {
+							URLConnection url_c = u.toURL().openConnection();
+							info(waited,url_c.responseCode+" - "+url_c.getURL())
+							check = url_c.responseCode == 200 ;
+							if (waited!="nill"){
+								check = check && url_c.getURL() ==~e[2]
+							}
+						}
+						catch (Exception ex) {
+							log.info("      --> "+ex )
+							check = false;
+						}
+
+						break
+					case "url" :
+						info "Vérifier que des URL sont correctement formatées\n"
+						def t = "x."+e[0];
+						if (testsuiteProperties.getProperty("type").equals("xml")){
+							t +=".list()";
+						}
+						def r = Eval.x(response,t)
+						check = true;
+						for (int i =0; i< r.size();i++){
+							if (r[i]!=null){
+								info(["url" : r[i]])
+								try {
+									URLConnection url_c = (r[i].toURL()).openConnection();
+								}
+								catch (Exception ex) {
+									info (["Erreur lors du traitement de" :e+" | "+r[i]]);
+									check = check && false;
+								}
+							}
+						}
+						break
+					case "nill":
+						info "Vérifier qu'un élément n'est parésent\n"
+						def t = "x."+e[0];
+						def r = Eval.x(response,t)
+						info (e[2], r)
+						check = (r==null || r=="");
+						break;
+					case "eval" :
+						statusString +=  "Vérifier que la valeur associée à l'élément "+e[0]+" correspond à l'expression régulière "+e[2]+"\n"
+						def t = "x."+e[0];
+						def r = Eval.x(response,t)
+						info (e[2], r)
+						check = r==~e[2]
+						break;
+		           	 case "evalList":
+		            		info  "Vérifier que la liste associée à l'élément "+e[0]+" correspond à la liste "+Eval.me(e[2])+"\n"
+						def t = "x."+e[0];
+						if (testsuiteProperties.getProperty("type").equals("xml")){
+							t +=".list()";
+						}
+						def r = Eval.x(response,t)
+						info(e[2], r)
+						check = r== Eval.me(e[2])
+						break;
+		           	 case "anyList":
+		           	 	info  "Vérifier que la liste correspondant à l'élément "+e[0]+" contient au moins une fois "+e[2]+"\n"
+						def t = "x."+e[0];
+						if (testsuiteProperties.getProperty("type").equals("xml")){
+							t +=".list()";
+						}
+						def r = Eval.x(response,t)
+						info(e[2], r)
+						check = r.any { it =~e[2] }
+		            		break;
+		            	 case "subListContains":
+		            		info  "Vérifier que chaque sous liste de la liste correspondant à l'élément "+e[0]+" contient au moins une fois "+e[2]+"\n"
+						def t = "x."+e[0];
+						if (testsuiteProperties.getProperty("type").equals("xml")){
+							t +=".list()";
+						}
+						def r = Eval.x(response,t)
+						info(e[2], r)
+
+						//check = r.each { l-> l.each{element -> log.info element}	}
+						check = r.every { l-> l.any{element -> element ==~ e[2] }	}
+		            		break;
+					 case "listContains":
+						info "Vérifier que la liste correspondant à l'élément "+e[0]+" contient au moins une fois les éléments de la liste "+Eval.me(e[2])+"\n"
+						def t = "x."+e[0];
+						if (testsuiteProperties.getProperty("type").equals("xml")){
+							t +=".list()";
+						}
+						def r = Eval.x(response,t)
+						info(Eval.me(e[2]), r)
+						check = r.containsAll(Eval.me(e[2]))
+		            		break;
+
+		            	 case "everyList":
+		             		info "Vérifier que chacun des éléments la liste correspondant à l'élément "+e[0]+" correspond au pattern "+e[2]
+		            		def t = "x."+e[0];
+						if (testsuiteProperties.getProperty("type").equals("xml")){
+							t +=".list()";
+						}
+						def r = Eval.x(response,t)
+						info(e[2], r)
+						check = r.every { it =~ e[2] }
+		            		break;
+				  	 case "isSortedList":
+				   		info "Vérifier que la liste correspondant à l'élément "+e[0]+" est triée dans l'ordre "+e[2]+"\n"
+				   		def t = "x."+e[0];
+						if (testsuiteProperties.getProperty("type").equals("xml")){
+							//mode xml
+							t +=".list()";
+							def r = new ArrayList(Eval.x(response,t));
+							info(["found" : r])
+							if (	 e[2] == "DESC" ){
+								check =  r.isReversed()
+							}else{
+								check =  r.isSorted()
+							}
+						} else{
+							//mode json
+							def r = Eval.x(response,t)
+							info(["found" : r])
+							if (	 e[2] == "DESC" ){
+								check =  r.isReversed()
+							}else{
+								check =  r.isSorted()
+							}
+						}
+				   		break;
+					case "denombrementBonsPlansBoILO" :
+						info "Dénombrer des BonsPlans ILO\n"
+						def t = "x."+e[0];
+						String u = Eval.x(response,t)
+						String query =  e[2];
+
+						def url = testsuiteProperties.getProperty("boILO")+"?logic=sl_bonplan1&q=periode_validite:J";
+						url+=(new Date()).format("ddMMyyyy")+"%7Bs%3D0%7D"+query+"&target=ilo&nresults=50000&sort=tri1:desc&add_hit_meta=xml@xml";
+						info(["requesting exalead" : url])
+						try {
+							def iloResponse = new XmlSlurper().parse(url)
+							def allRecords = iloResponse.'**'.findAll{ it.name().equals("Hit")}
+							info(["obtenu via l'API" : u, "attendu via BOILO" : allRecords.size()])
+							check = (Integer.parseInt(u)==allRecords.size())
+						}
+						catch (Exception ex) {
+							log.info("      --> "+ex )
+							check = false;
+						}
+
+				   		break;
+					case "evalCode":
+						info "Executer du code groovy\n"
+						def t = "x."+e[0];
+						def r = Eval.x(response,t)
+						def shell = new GroovyShell()
+						def code = e[2]
+						info(["execution de" : code])
+						code = "{->${code}}"
+						def context = new Context(r, log, testsuiteProperties, response)
+						def closure = shell.evaluate(code)
+						closure.delegate = context
+						check = closure()
+						break;
+ 					case "getList":
+		            		/*def latitude = "x.deals.location.latitude";
+						def r = Eval.x(response,latitude)
+						def longitude = "x.deals.location.longitude";
+						def s = Eval.x(response,longitude)
+						for (int i = 0; i < r.flatten().size(); i++)		{
+							resulSet.add("cz"+s.flatten()[i]+","+r.flatten()[i])
+						}*/
+						def t = "x."+e[0];
+						def r = Eval.x(response,t)
+						r.flatten().each {resulSet.add(it)}
+						check = true
+		            		break;
+
+					default :
+						info  toCheck.get(e)[0] + " : opération inconnue\n";
+						break;
+				}
+
+				if (!check){
+					info(["Element" : e, "attendu" : e[2]]);
+				}
+				assert check : statusString
+			}
+		}
+		if (resulSet.size() >0){
+			log.info resulSet
+			log.info resulSet.size()
+		}
+
+          return "done"
+   }
+}
+context.setProperty( "launcher", new Launcher( log, context, testRunner) )
+//log.info "Library Context:"+context]]></script></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:reporting><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>

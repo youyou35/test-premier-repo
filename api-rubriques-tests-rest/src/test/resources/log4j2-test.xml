@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+    <properties>
+        <property name="filters">org.junit,org.apache.maven,org.eclipse,sun.reflect,java.lang.reflect</property>
+    </properties>
+    <appenders>
+        <console name="console" target="SYSTEM_OUT">
+            <patternLayout pattern="%d{ISO8601} [%t] %-5p %c{1} - %m%n%rEx{filters(${filters})}" />
+        </console>
+    </appenders>
+    <loggers>
+
+        <logger name="fr.pagesjaunes.api" level="warn" />
+        <logger name="fr.pagesjaunes.rubriques.testsrest" level="info" />
+        <logger name="com.jayway.restassured" level="error" />
+
+        <root level="warn">
+            <appenderRef ref="console" />
+        </root>
+    </loggers>
+</configuration>

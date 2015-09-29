@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>fr.pagesjaunes.nodejs</groupId>
+        <artifactId>api-rubriques</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>api-rubriques-metier</artifactId>
+
+    <properties>
+        <project.skip.conf>false</project.skip.conf>
+        <project.packaging.type>nodejs</project.packaging.type>
+        <project.middleware.type>nodejs</project.middleware.type>
+    </properties>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/webapp</directory>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>check</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <target>
+                                <ant antfile="build.xml" target="check" />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+
+        <!-- ============================================================== -->
+        <!-- PROFIL QUI S'EXECUTE POUR LES TESTS DE PERFORMANCE E3 -->
+        <!-- ============================================================== -->
+        <profile>
+            <id>performance-test</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.lazerycode.jmeter</groupId>
+                        <artifactId>jmeter-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.lazerycode.jmeter</groupId>
+                        <artifactId>jmeter-analysis-maven-plugin</artifactId>
+                        <configuration>
+                            <checkResult>
+                                <throughput>
+                                    <threshold>1000</threshold>
+                                    <toleranceDirection>UPPER</toleranceDirection>
+                                </throughput>
+                                <errors>
+                                    <threshold>2</threshold>
+                                    <toleranceDirection>LOWER</toleranceDirection>
+                                </errors>
+                            </checkResult>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+ <!--        <profile>
+            <id>soapui</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.smartbear.soapui</groupId>
+                        <artifactId>soapui-pro-maven-plugin</artifactId>
+                        <configuration>
+                            <projectFile>${basedir}/src/test/resources/soapui/${project.artifactId}-soapui-project.xml</projectFile>
+                            <outputFolder>${basedir}/target/surefire-reports-soapui</outputFolder>
+                            <testFailIgnore>false</testFailIgnore>
+                            <junitReport>true</junitReport>
+                            <exportAll>false</exportAll>
+                            <testSuite>${testSuite}</testSuite>
+                            <printReport>false</printReport>
+                            <projectProperties>
+                                <projectProperty>rest_endpoint=${restEndPointHostPort}</projectProperty>
+                                <projectProperty>base_path=${project.parent.build.finalName}</projectProperty>
+                            </projectProperties>
+                            <soapuiProperties>
+                                <property>
+                                    <name>soapui.logroot</name>
+                                    <value>${basedir}/target/soapui-logs/</value>
+                                </property>
+                            </soapuiProperties>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>soapui</id>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>         -->
+    </profiles>
+</project>

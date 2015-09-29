@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="deployit" default="main">
+    <description>genere le dar pour deployit et l'importe</description>
+
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+    <!-- prefix to access environment variables -->
+    <!-- environment variables are then accessible via ${env.XXX}-->
+    <property environment="env"/>
+
+    <!-- global properties -->
+    <property name="workspace" value="${basedir}/target/packaging_workspace/deployit" />
+    <property name="cd_api_protocol" value="${env.CONFPJ_CDAPI_PROTOCOL}" />
+    <property name="cd_api_host" value="${env.CONFPJ_CDAPI_HOST}" />
+    <property name="cd_api_port" value="${env.CONFPJ_CDAPI_PORT}" />
+    <property name="cd_api_context" value="${env.CONFPJ_CDAPI_CONTEXT}" />
+    <property name="cd_api_deployit_context" value="${env.CONFPJ_CDAPI_DEPLOYIT_CONTEXT}" />
+    <property name="dar_package_path" value="${workspace}/${deployit.finalName}_${deployit.version}.dar" />
+
+    <target name="prepare" description="prepare the workspace">
+        <copy todir="${workspace}/${deployit.finalName}">
+            <fileset dir="${basedir}/../api-rubriques-metier/target/classes/" />
+        </copy>
+        <copy file="deployit-manifest.xml" tofile="${workspace}/deployit-manifest.xml">
+            <filterset begintoken="@@" endtoken="@@">
+                <filter token="deployit.finalName" value="${deployit.finalName}" />
+                <filter token="deployit.tag.webapp" value="${deployit.tag.webapp}" />
+                <filter token="deployit.version" value="${deployit.version}" />
+            </filterset>
+        </copy>
+    </target>
+
+    <target name="dar_creation" description="Creation of the dar" depends="prepare">
+        <zip destfile="${dar_package_path}" preserve0permissions="true">
+            <zipfileset dir="${workspace}" includes="**/**" />
+        </zip>
+    </target>
+
+    <target name="deployit_import" description="imports the dar within deployit" depends="dar_creation">
+        <basename file="${dar_package_path}" property="dar_package_name"/>
+        <property name="cd_api_upload_url" value="${cd_api_protocol}${cd_api_host}:${cd_api_port}/${cd_api_context}/${cd_api_deployit_context}/package/upload" />
+        <echo message="${cd_api_upload_url}" />
+
+        <exec executable="/usr/bin/curl" dir="." failonerror="true">
+            <arg value='--fail' />
+            <arg value='--noproxy' />
+            <arg value='*' />
+            <arg value='-s' />
+            <arg value='-S' />
+            <arg value='-F' />
+            <arg value='package_contents=@${dar_package_path}' />
+            <arg value='${cd_api_upload_url}/${dar_package_name}' />
+        </exec>
+    </target>
+
+    <target name="deployit_deploy" description="deploys the dar on target environment" depends="deployit_import">
+        <basename file="${dar_package_path}" property="dar_package_name"/>
+        <property name="cd_api_deploy_url" value="${cd_api_protocol}${cd_api_host}:${cd_api_port}/${cd_api_context}/${cd_api_deployit_context}/deploy/deploy/${dit.targetenvid}/${deployit.finalName}/${deployit.version}" />
+
+        <exec executable="/usr/bin/wget" dir="." failonerror="true">
+            <arg value='--quiet' />
+            <arg value='--no-proxy' />
+            <arg value='--content-on-error' />
+            <arg value='--post-data={}' />
+            <arg value='${cd_api_deploy_url}' />
+            <arg value='-O' />
+            <arg value='-' />
+        </exec>
+    </target>
+
+    <target name="main" description="Orchestrator" >
+        <switch value="${dit.action}">
+            <case value="generate-deployment-package">
+                <antcall target="dar_creation" />
+            </case>
+            <case value="import">
+                <antcall target="deployit_import" />
+            </case>
+            <case value="deploy">
+                <antcall target="deployit_deploy" />
+            </case>
+        </switch>
+    </target>
+</project>
