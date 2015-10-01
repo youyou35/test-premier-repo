@@ -1,0 +1,38 @@
+{
+    "port":"PORT_INT",
+    "max_workers":4,
+    "mongo":{
+        "server":"CONFPJ_RUBRIQUES_MONGODB_ADRESSE",
+        "base":"CONFPJ_RUBRIQUES_MONGODB_DATABASE",
+        "collection_conf": "rubriques_conf",
+        "collections": ["rubriques_a", "rubriques_b"],
+        "user":"CONFPJ_RUBRIQUES_MONGODB_USERNAME",
+        "password":"CONFPJ_RUBRIQUES_MONGODB_PASSWORD",
+        "connectTimeoutMS":500,
+        "socketTimeoutMS":60000,
+        "maxPoolSize":20,
+        "readPreference":"secondaryPreferred",
+        "replicaSet":"CONFPJ_APIRUBRIQUES_V2_REPLICASET_NAME"
+    },
+    "cache":{
+        "life_time":"CONFPJ_APIRUBRIQUES_V2_CACHE_LIFETIME"
+    },
+    "log":{
+        "level":"CONFPJ_APIRUBRIQUES_V2_LOG_LEVEL",
+        "dir":"CONFPJ_LOG_PATHDIR_NODEJS",
+        "log_file":"CONFPJ_APIRUBRIQUES_V2_LOG_FILENAME",
+        "exception_file":"CONFPJ_APIRUBRIQUES_V2_LOG_EXCEPTION_FILENAME",
+        "max_size":"CONFPJ_APIRUBRIQUES_V2_LOG_MAXSIZE",
+        "max_files":"CONFPJ_APIRUBRIQUES_V2_LOG_MAXFILES"
+    },
+    "max_returned_ressources":100,
+    "meta_data":{
+        "pagination":{
+            "total" : "PJ-Pagination-Total",
+            "first_page" : "PJ-Pagination-Links-First",
+            "last_page" : "PJ-Pagination-Links-Last",
+            "next_page" : "PJ-Pagination-Links-Next",
+            "prev_page" : "PJ-Pagination-Links-Prev"
+        }
+    }
+}
