@@ -1,15 +1,15 @@
-[ioda_locahost]
-ioda-int-1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=32767
-ioda-int-2 ansible_ssh_host=0.0.0.0 ansible_ssh_port=32767
+#[ioda_locahost]
+#ioda-int-1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=32767
+#ioda-int-2 ansible_ssh_host=0.0.0.0 ansible_ssh_port=32767
 
 [ioda]
 ioda-int-1
 ioda-int-2
 
 #pour tester les satanées variables proxyexpl.services.local:3128
-[ioda2]
-ioda-int-1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=32767
-ioda-int-2 ansible_ssh_host=0.0.0.0 ansible_ssh_port=32767
+#[ioda2]
+#ioda-int-1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=32767
+#ioda-int-2 ansible_ssh_host=0.0.0.0 ansible_ssh_port=32767
 
 
 [docker:children]
