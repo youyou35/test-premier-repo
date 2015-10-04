@@ -17,8 +17,12 @@
     # git_tag           : checkout du tag {{git_tag_name}}
 
 # exemple:  Pull le dernier commit et modifie le fichier de configuration
-#           ansible-playbook deploy.yml --tags "last_commit,pos_conf"
+#           ansible-playbook deploy.yml --extra-vars "target_env=PROD project_name=une_api" --tags "last_commit,pos_conf"
 
+# validation: lance le playbook sur tous les tags:
+#           ansible-playbook deploy.yml --extra-vars "target_env=INT project_name=api-pj git_tag_name=v1.0.0" -v --tags "post_conf,last_commit"
+
+#TODO: gestion de la conf plus poussée... fichier de conf à nom fixe ? recherche de préfixe ?
   vars:
    target_env: none
    project_name: unknown-project
@@ -75,10 +79,19 @@
       git_tag
 
    #Dans tous les cas on gère la post-conf
+   # - name: Liste tous les fichiers de conf du projet lié à l'environnement cible
+   #   find:
+   #    paths="{{project_path}}/{{project_name}}"
+   #    pattern="{{target_env}}.*"
+   #    file_type=file
+   #    recurse=yes
+   #   tags:
+   #    post_conf
+
    - name: Lien symbolique vers le fichier de conf qui va bien
      file: state=link 
-      src={{target_env}}.conf.json
-      dest=/home/integration/mon-api/api-rubriques-metier/src/main/resources/conf/conf.json
+      src="{{target_env}}.conf.json"
+      dest="{{project_path}}/{{project_name}}"/api-rubriques-metier/src/main/resources/conf/conf.json
       force=yes
      tags:
       post_conf
