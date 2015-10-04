@@ -1,0 +1,193 @@
+[
+    {
+        "name":"List all rubriques",
+        "description":"Get a list of all rubriques",
+        "path":"/rubriques",
+        "mongoQuery":{
+            "method":"find",
+            "query":{
+                "criteria":{
+                    "code_AN8": {"$ne": "999999"}
+                },
+                "projection":{
+                    "anakin":0,
+                    "_id":0
+                },
+                "filters":[
+                    {
+                        "get_param":"eligible_photos",
+                        "criteria":{
+                            "eligible_photos":true
+                        }
+                    },
+                    {
+                        "get_param":"urgence",
+                        "criteria":{
+                            "urgence":true
+                        }
+                    },
+                    {
+                        "get_param":"eligible_contributif",
+                        "criteria":{
+                            "eligible_contributif":true
+                        }
+                    },
+                    {
+                        "get_param":"sensible",
+                        "criteria":{
+                            "sensible":true
+                        }
+                    },
+                    {
+                        "get_param":"code_thematique",
+                        "criteria":{
+                            "thematique_publicitaire.code":"@code_thematique@"
+                        }
+                    },
+                    {
+                        "get_param":"libelle_thematique",
+                        "criteria":{
+                            "thematique_publicitaire.libelle":{"$regex":"@libelle_thematique@*"}
+                        }
+                    },
+                    {
+                        "get_param":"libelle",
+                        "criteria":{
+                            "libelle":{"$regex":"@libelle@*"}
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "name":"[deprecated] use /rubriques/:an9 instead",
+        "description":"[deprecated] Get a rubrique by its an9 code",
+        "path":"/rubrique/:an9",
+        "mongoQuery":{
+            "method":"findOne",
+            "query":{
+                "criteria":{
+                    "code_AN9":"@an9@"
+                },
+                "projection":{
+                    "anakin":0,
+                    "_id":0
+                }
+            }
+        }
+    },
+    {
+        "name":"[deprecated] use /rubriques/by_code_an8-:an8 instead",
+        "description":"[deprecated] Get a rubrique by its an8 code",
+        "path":"/rubrique/by_code_an8/:an8",
+        "mongoQuery":{
+            "method":"findOne",
+            "query":{
+                "criteria":{
+                    "code_AN8":"@an8@"
+                },
+                "projection":{
+                    "anakin":0,
+                    "_id":0
+                }
+            }
+        }
+    },
+    {
+        "name":"Rubrique by code",
+        "description":"Get a rubrique by its an9 code",
+        "path":"/rubriques/:an9([0-9]*)",
+        "mongoQuery":{
+            "method":"findOne",
+            "query":{
+                "criteria":{
+                    "code_AN9":"@an9@"
+                },
+                "projection":{
+                    "anakin":0,
+                    "_id":0
+                }
+            }
+        }
+    },
+    {
+        "name":"Rubrique by code an8",
+        "description":"Get a rubrique by its an8 code",
+        "path":"/rubriques/by_code_an8-:an8([0-9]*)",
+        "mongoQuery":{
+            "method":"findOne",
+            "query":{
+                "criteria":{
+                    "code_AN8":"@an8@"
+                },
+                "projection":{
+                    "anakin":0,
+                    "_id":0
+                }
+            }
+        }
+    },
+    {
+        "name":"List segments",
+        "description":"Get a list of all segments",
+        "path":"/segments",
+        "mongoQuery":{
+            "method":"distinct",
+            "query":{
+                "field":"segment",
+                "criteria":{
+
+                }
+            }
+        }
+    },
+    {
+        "name":"List thematiques pub",
+        "description":"Get a list of all thematiques pub",
+        "path":"/thematiques",
+        "mongoQuery":{
+            "method":"distinct",
+            "query":{
+                "field":"thematique_publicitaire",
+                "criteria":{
+
+                }
+            }
+        }
+    },
+    {
+        "name":"Rubriques sensibles",
+        "description":"Get a list of rubrique with sensible:true",
+        "path":"/rubriques/sensibles",
+        "mongoQuery":{
+            "method":"find",
+            "query":{
+                "criteria":{
+                    "sensible":true
+                },
+                "projection":{
+                    "_id":0,
+                    "code_AN8":1
+                }
+            }
+        }
+    },
+    {
+        "name":"Rubriques by code thematique pub",
+        "description":"Get a list of rubriques sharing the same 'thematique_publicitaire' code",
+        "path":"/rubriques/by_code_thematiquepub-:codethem([0-9]*)",
+        "mongoQuery":{
+            "method":"find",
+            "query":{
+                "criteria":{
+                    "thematique_publicitaire.code":"@codethem@"
+                },
+                "projection":{
+                    "anakin":0,
+                    "_id":0
+                }
+            }
+        }
+    }
+]
