@@ -30,6 +30,15 @@
   remote_user: integration
 
   vars:
+   # configuration_files:
+   #  general_conf:
+   #    src_dir: api-rubriques-metier/src/main/resources/conf/
+   #    src_name: conf.json
+   #  routes_conf:
+   #    src_dir: api-rubriques-metier/src/main/resources/conf/
+   #    src_name: routes.json
+
+
    target_env: none
    project_name: unknown-project
    project_path: /home/integration
@@ -94,28 +103,39 @@
    #   tags:
    #    post_conf
 
-   - name: Création des lien(s) symbolique(s) de conf
-     file: state=link 
-      src="{{target_env}}.conf.json"
-      dest="{{project_path}}/{{project_name}}"/api-rubriques-metier/src/main/resources/conf/conf.json
-      force=yes
+   # - name: TESTS Liens symboliques complexes
+   #   file: state=link 
+   #    src="{{target_env}}.conf.json"
+   #    dest="{{project_path}}/{{project_name}}/{{item.src_dir}}{{item.src_name}}"
+   #    force=yes
+   #   with_items:
+   #    - { src_dir: 'api-rubriques-metier/src/main/resources/conf/', src_name: 'conf.json' }
+   #    - { src_dir: 'api-rubriques-metier/src/main/resources/conf/', src_name: 'routes.json' }
+   #   tags:
+   #    post_conf
+
+   - name: import des fichiers à configurer
+     include_vars: "{{item}}"
+     with_first_found:
+      - deploiement_params.yml
      tags:
       post_conf
 
-   - name: TESTS Liens symboliques complexes
-     file: state=link 
-      src="{{target_env}}.conf.json"
-      dest="{{project_path}}/{{project_name}}/{{item.src_dir}}{{item.src_name}}"
-      force=yes
-     with_items:
-      - { src_dir: 'api-rubriques-metier/src/main/resources/conf/', src_name: 'conf.json' }
-      - { src_dir: 'api-rubriques-metier/src/main/resources/conf/', src_name: 'routes.json' }
-     tags:
-      test
-
    - name: List conf files
-     debug: msg="User {{ item.key }} is {{ item.value.name }} ({{ item.value.telephone }})"
-     with_dict: "{{./ansible/deploiement_params}}"
+     debug: 
+      msg="User {{ item.key }} is {{ item.value.src_dir }} ({{ item.value.src_name }})"
+     with_dict: "{{configuration_files}}"
+     tags:
+      debug
+
+   - name: Création des liens symboliques décrits dans ansible/deploiement_params.yml
+     file: state=link 
+      src="{{target_env}}.{{item.value.src_name}}"
+      dest="{{project_path}}/{{project_name}}/{{item.value.src_dir}}{{item.value.src_name}}"
+      force=yes
+     with_dict: "{{configuration_files}}"
+     tags:
+      post_conf
   
   #buld additionnel
    # - name: Install dépendances
