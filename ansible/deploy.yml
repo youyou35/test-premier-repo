@@ -3,7 +3,7 @@
 #  project_name: nom du répetoire racine du projet - défaut: unknown-project
 #  project_path: path du répertoire racine du projet - défaut: /home/integration
 #  target_env:  INT/PROD/etc ... utilisé pour le lien symbolique de conf - défaut: none
-#  git_repository_url: url du repo git - défaut: none
+#  git_url: url du repo git - défaut: none
 #  git_branch:  nom de la branche git - défaut: master
 #  git_tag_name: nom du tag git - défaut: none - Optionnel
 
@@ -18,11 +18,10 @@
 #           ansible-playbook deploy.yml --extra-vars "target_env=PROD project_name=une_api" --tags "last_commit,pos_conf"
 
 # validation: lance le playbook sur tous les tags:
-#           ansible-playbook deploy.yml --extra-vars "target_env=INT project_name=api-pj git_tag_name=v1.0.0" -v --tags "post_conf,last_commit"
+#           ansible-playbook deploy.yml --extra-vars "target_env=INT project_name=api-pj git_url=https://github.com/youyou35/test-premier-repo.git git_tag_name=v1.0.0" -vansible-playbook deploy.yml --extra-vars "target_env=INT project_name=api-pj git_url=https://github.com/youyou35/test-premier-repo.git git_tag_name=v1.0.0" -v --tags "post_conf,last_commit"ansible-playbook deploy.yml --extra-vars "target_env=INT project_name=api-pj git_url=https://github.com/youyou35/test-premier-repo.git git_tag_name=v1.0.0" -v --tags "post_conf,last_commit"
 #################################################################################################################################################
 
 #TODO: 
-#       - gestion de la conf plus poussée... fichier de conf à nom fixe ? recherche de préfixe ? templates ? copy ?
 #       - créer le tag <run> de lancement de l'api node
 
 ---
@@ -42,7 +41,8 @@
    target_env: none
    project_name: unknown-project
    project_path: /home/integration
-   git_repository_url: https://github.com/youyou35/test-premier-repo.git
+   #git_url: https://github.com/youyou35/test-premier-repo.git
+   git_url: none
    git_branch: master
    git_tag_name: none
 
@@ -53,7 +53,7 @@
    #git pull forcé sur la branche
    - name: Git pull (forcé)
      git: 
-      repo="{{git_repository_url}}"
+      repo="{{git_url}}"
       dest="{{project_path}}/{{project_name}}"
       version="{{git_branch}}"
       force=yes
@@ -77,7 +77,7 @@
 
    - name: checkout du dernier tag
      git:
-      repo="{{git_repository_url}}"
+      repo="{{git_url}}"
       dest="{{project_path}}/{{project_name}}"
       version="{{latest_tag.stdout}}"
       force=yes
@@ -86,7 +86,7 @@
 
    - name: checkout du tag cible
      git:
-      repo="{{git_repository_url}}"
+      repo="{{git_url}}"
       dest="{{project_path}}/{{project_name}}"
       version="{{git_tag_name}}"
       force=yes
@@ -103,30 +103,12 @@
    #   tags:
    #    post_conf
 
-   # - name: TESTS Liens symboliques complexes
-   #   file: state=link 
-   #    src="{{target_env}}.conf.json"
-   #    dest="{{project_path}}/{{project_name}}/{{item.src_dir}}{{item.src_name}}"
-   #    force=yes
-   #   with_items:
-   #    - { src_dir: 'api-rubriques-metier/src/main/resources/conf/', src_name: 'conf.json' }
-   #    - { src_dir: 'api-rubriques-metier/src/main/resources/conf/', src_name: 'routes.json' }
-   #   tags:
-   #    post_conf
-
-   - name: import des fichiers à configurer
+   - name: Liste des fichiers à configurer
      include_vars: "{{item}}"
      with_first_found:
       - deploiement_params.yml
      tags:
       post_conf
-
-   - name: List conf files
-     debug: 
-      msg="User {{ item.key }} is {{ item.value.src_dir }} ({{ item.value.src_name }})"
-     with_dict: "{{configuration_files}}"
-     tags:
-      debug
 
    - name: Création des liens symboliques décrits dans ansible/deploiement_params.yml
      file: state=link 
