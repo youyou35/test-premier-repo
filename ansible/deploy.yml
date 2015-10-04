@@ -1,7 +1,4 @@
----
-- hosts: ioda
-  remote_user: integration
-  
+#################################################################################################################################################
 #paramètres du playbook:
 #  project_name: nom du répetoire racine du projet - défaut: unknown-project
 #  project_path: path du répertoire racine du projet - défaut: /home/integration
@@ -15,14 +12,23 @@
     # last_commit       : checkout du dernier commit de la branche
     # latest_tag        : checkout du dernier tag
     # git_tag           : checkout du tag {{git_tag_name}}
+    # post_conf         : gestion du/des fichiers de conf
 
 # exemple:  Pull le dernier commit et modifie le fichier de configuration
 #           ansible-playbook deploy.yml --extra-vars "target_env=PROD project_name=une_api" --tags "last_commit,pos_conf"
 
 # validation: lance le playbook sur tous les tags:
 #           ansible-playbook deploy.yml --extra-vars "target_env=INT project_name=api-pj git_tag_name=v1.0.0" -v --tags "post_conf,last_commit"
+#################################################################################################################################################
 
-#TODO: gestion de la conf plus poussée... fichier de conf à nom fixe ? recherche de préfixe ?
+#TODO: 
+#       - gestion de la conf plus poussée... fichier de conf à nom fixe ? recherche de préfixe ? templates ? copy ?
+#       - créer le tag <run> de lancement de l'api node
+
+---
+- hosts: ioda
+  remote_user: integration
+
   vars:
    target_env: none
    project_name: unknown-project
@@ -88,10 +94,31 @@
    #   tags:
    #    post_conf
 
-   - name: Lien symbolique vers le fichier de conf qui va bien
+   - name: Création des lien(s) symbolique(s) de conf
      file: state=link 
       src="{{target_env}}.conf.json"
       dest="{{project_path}}/{{project_name}}"/api-rubriques-metier/src/main/resources/conf/conf.json
       force=yes
      tags:
       post_conf
+
+   - name: TESTS Liens symboliques complexes
+     file: state=link 
+      src="{{target_env}}.conf.json"
+      dest="{{project_path}}/{{project_name}}/{{item.src_dir}}{{item.src_name}}"
+      force=yes
+     with_items:
+      - { src_dir: 'api-rubriques-metier/src/main/resources/conf/', src_name: 'conf.json' }
+      - { src_dir: 'api-rubriques-metier/src/main/resources/conf/', src_name: 'routes.json' }
+     tags:
+      test
+
+   - name: List conf files
+     debug: msg="User {{ item.key }} is {{ item.value.name }} ({{ item.value.telephone }})"
+     with_dict: "{{./ansible/deploiement_params}}"
+  
+  #buld additionnel
+   # - name: Install dépendances
+   #   npm:
+
+  #run pm2 par exemple 

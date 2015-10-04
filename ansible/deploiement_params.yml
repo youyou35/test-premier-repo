@@ -1,0 +1,8 @@
+---
+configuration_files:
+  general_conf:
+    src_dir: api-rubriques-metier/src/main/resources/conf/
+    src_name: conf.json
+  routes_conf:
+    src_dir: api-rubriques-metier/src/main/resources/conf/
+    src_name: routes.json
