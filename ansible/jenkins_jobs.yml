@@ -85,18 +85,6 @@
       last_tag
 
    ### POST CONFIGURATION ###
-   
-   # TODO ? : découvrir les fichiers de conf par filtrages sur noms de fichiers dans le projet et lien symbolique dans la foulée
-   #          Très axé conventions, pratique mais moins évident qu'une déclaration explicite en bonne et due forme.
-   #          De toutes façons c'est ansible > 2.0 donc pas encore mûr pour exploitation (pas encore sorti en stable)
-   # - name: Liste tous les fichiers de conf du projet lié à l'environnement cible
-   #   find:
-   #    paths="{{project_path}}/{{project_name}}"
-   #    pattern="{{target_env}}.*"
-   #    file_type=file
-   #    recurse=yes
-   #   tags:
-   #    post_conf
 
    # On charge le fichier yaml qui décrit ce qu'il faut post-configurer
    - name: Liste des fichiers à configurer
@@ -114,7 +102,19 @@
      with_dict: "{{configuration_files}}"
      tags:
       post_conf
-  
+
+   # TODO ? : découvrir les fichiers de conf par filtrages sur noms de fichiers dans le projet et lien symbolique dans la foulée
+   #          Très axé conventions, pratique mais moins évident qu'une déclaration explicite en bonne et due forme.
+   #          De toutes façons c'est ansible > 2.0 donc pas encore mûr pour exploitation (pas encore sorti en stable)
+   # - name: Liste tous les fichiers de conf du projet lié à l'environnement cible
+   #   find:
+   #    paths="{{project_path}}/{{project_name}}"
+   #    pattern="{{target_env}}.*"
+   #    file_type=file
+   #    recurse=yes
+   #   tags:
+   #    post_conf
+   
   #### Deploiement sur les serveurs cibles ####
    - name: Déploiement du projet sur les serveurs cibles
      copy:  
