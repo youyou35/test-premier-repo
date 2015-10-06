@@ -118,7 +118,7 @@
   #### Deploiement sur les serveurs cibles ####
    - name: Déploiement du projet sur les serveurs cibles
      copy:  
-      src="../*"
+      src=".."
       dest="{{project_path}}/{{project_name}}"
      tags:
       deploiement
