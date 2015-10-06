@@ -5,6 +5,9 @@
 [jenkins]
 localhost
 
+[jenkins:vars]
+ansible_ssh_user=root
+
 [ioda]
 ioda-int-1
 ioda-int-2
