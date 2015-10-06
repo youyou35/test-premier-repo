@@ -28,7 +28,7 @@
 
   vars:
    target_env: none
-   project_name: unknown-project
+   project_name: ""
    project_path: /home/integration
    git_url: none
    git_branch: master
@@ -109,7 +109,7 @@
    - name: Création des liens symboliques décrits dans ansible/deploiement_params.yml
      file: state=link 
       src="{{target_env}}.{{item.value.src_name}}"
-      dest="{{project_path}}/{{item.value.src_dir}}{{item.value.src_name}}"
+      dest="{{project_path}}{{project_name}}/{{item.value.src_dir}}{{item.value.src_name}}"
       force=yes
      with_dict: "{{configuration_files}}"
      tags:
@@ -117,7 +117,7 @@
   
   #### Deploiement sur les serveurs cibles ####
    - name: Déploiement du projet sur les serveurs cibles
-     file: state=link 
+     copy: state=link 
       src="{{target_env}}.{{item.value.src_name}}"
       dest="{{project_path}}/{{item.value.src_dir}}{{item.value.src_name}}"
       force=yes
