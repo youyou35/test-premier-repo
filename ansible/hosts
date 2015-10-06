@@ -1,7 +1,3 @@
-#[ioda_locahost]
-#ioda-int-1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=32767
-#ioda-int-2 ansible_ssh_host=0.0.0.0 ansible_ssh_port=32767
-
 [jenkins]
 localhost
 
@@ -13,17 +9,20 @@ ansible_ssh_user=root
 ioda-int-1
 ioda-int-2
 
-#pour tester les satanées variables proxyexpl.services.local:3128
-#[ioda2]
-#ioda-int-1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=32767
-#ioda-int-2 ansible_ssh_host=0.0.0.0 ansible_ssh_port=32767
-
-
 [docker:children]
 ioda
 
 [docker:vars]
 ansible_ssh_user=integration
 
-[proxy_DT:vars]
-proxy=proxytest.services.local
+#[proxy_DT:vars]
+#proxy=proxytest.services.local
+
+#[ioda_locahost]
+#ioda-int-1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=32767
+#ioda-int-2 ansible_ssh_host=0.0.0.0 ansible_ssh_port=32767
+
+#pour tester les satanées variables proxyexpl.services.local:3128
+#[ioda2]
+#ioda-int-1 ansible_ssh_host=127.0.0.1 ansible_ssh_port=32767
+#ioda-int-2 ansible_ssh_host=0.0.0.0 ansible_ssh_port=32767
