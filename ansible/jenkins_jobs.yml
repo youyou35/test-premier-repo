@@ -119,7 +119,7 @@
    - name: Déploiement du projet sur les serveurs cibles
      copy:  
       src="../../default"
-      dest="{{project_path}}"
+      dest="{{project_path}}/{{project_name}}"
      tags:
       deploiement
 
