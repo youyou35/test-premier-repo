@@ -100,14 +100,14 @@
 
    # On charge le fichier yaml qui décrit ce qu'il faut post-configurer
    - name: Liste des fichiers à configurer
-     include_vars: "{{item}}"
+     local_action: include_vars "{{item}}"
      with_first_found:
       - deploiement_params.yml
      tags:
       post_conf
 
    - name: Création des liens symboliques décrits dans ansible/deploiement_params.yml
-     file: state=link 
+     local_action: file state=link 
       src="{{target_env}}.{{item.value.src_name}}"
       dest="{{project_path}}/{{item.value.src_dir}}{{item.value.src_name}}"
       force=yes
@@ -116,6 +116,14 @@
       post_conf
   
   #### Deploiement sur les serveurs cibles ####
+   - name: Déploiement du projet sur les serveurs cibles
+     file: state=link 
+      src="{{target_env}}.{{item.value.src_name}}"
+      dest="{{project_path}}/{{item.value.src_dir}}{{item.value.src_name}}"
+      force=yes
+     with_dict: "{{configuration_files}}"
+     tags:
+      post_conf
 
 
   #### BUILD ####
