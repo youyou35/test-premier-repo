@@ -24,8 +24,8 @@
 
 
 ---
-- hosts: ioda
-  remote_user: integration
+- hosts: jenkins
+  remote_user: jenkins
 
   vars:
    target_env: none
