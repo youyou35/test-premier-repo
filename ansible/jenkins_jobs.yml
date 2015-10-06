@@ -24,8 +24,7 @@
 
 
 ---
-- hosts: jenkins
-  remote_user: jenkins
+- hosts: all
 
   vars:
    target_env: none
@@ -39,7 +38,7 @@
    # - fail: msg="Echec, ce playbook nécessite la définition du paramètre suivant [tag_version]"
    #   when: tag_version is undefined
 
-   ####  usages de GIT ###
+   ####  usages de GIT (non utilisé par jenkins, il le fait mieux tout seul ###
    ### Par commit ###
    - name: Git pull (forcé)
      git: 
@@ -101,6 +100,8 @@
 
    # On charge le fichier yaml qui décrit ce qu'il faut post-configurer
    - name: Liste des fichiers à configurer
+     hosts: jenkins
+     remote_user: jenkins
      include_vars: "{{item}}"
      with_first_found:
       - deploiement_params.yml
@@ -108,6 +109,8 @@
       post_conf
 
    - name: Création des liens symboliques décrits dans ansible/deploiement_params.yml
+     hosts: jenkins
+     remote_user: jenkins
      file: state=link 
       src="{{target_env}}.{{item.value.src_name}}"
       dest="{{project_path}}/{{item.value.src_dir}}{{item.value.src_name}}"
@@ -116,6 +119,9 @@
      tags:
       post_conf
   
+  #### Deploiement sur les serveurs cibles ####
+
+
   #### BUILD ####
   # gestion de npm (tag nodejs)
   # gestion de bower (tag angular)

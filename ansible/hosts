@@ -6,6 +6,7 @@
 localhost
 
 [jenkins:vars]
+#pas compris pour l'instant, mon jenkins bosse en root apparemment.
 ansible_ssh_user=root
 
 [ioda]
