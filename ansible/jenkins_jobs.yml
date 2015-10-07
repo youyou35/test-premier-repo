@@ -84,6 +84,14 @@
      tags:
       last_tag
 
+   ### BUILD ###
+   - name: Build projet nodejs
+     shell: "npm install"
+     args:
+       chdir: "{{project_path}}/api-rubriques-metier/src/main/webapp"
+     tags:
+      nodejs
+
    ### POST CONFIGURATION ###
 
    # On charge le fichier yaml qui décrit ce qu'il faut post-configurer
@@ -114,7 +122,7 @@
    #    recurse=yes
    #   tags:
    #    post_conf
-   
+
   #### Deploiement sur les serveurs cibles ####
    - name: Déploiement du projet sur les serveurs cibles
      copy:  
