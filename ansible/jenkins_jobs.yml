@@ -153,19 +153,28 @@
      tags:
       deploiement
 
-   - name: Déploiement de l'archive sur les serveurs cibles 
-     copy:  
-      src="/tmp/youyou.tgz"
-      dest="{{project_path}}"
+   # - name: Déploiement de l'archive sur les serveurs cibles 
+   #   copy:  
+   #    src="/tmp/youyou.tgz"
+   #    dest="{{project_path}}"
+   #   tags:
+   #    deploiement_archive
+
+   # - name: Déploiement de l'archive sur les serveurs cibles 
+   #   shell: "tar xvzf youyou.tgz -C {{project_path}}/{{project_name}}"
+   #   args:
+   #     chdir: "{{project_path}}"
+   #   tags:
+   #    deploiement_archive
+
+   - name: Déploiement du projet sur les serveurs cibles
+     unarchive: 
+      src=/tmp/youyou.tgz
+      dest="{{project_path}}/{{project_name}}"
      tags:
       deploiement_archive
 
-   - name: Déploiement de l'archive sur les serveurs cibles 
-     shell: "tar xvzf youyou.tgz -C {{project_path}}/{{project_name}}"
-     args:
-       chdir: "{{project_path}}"
-     tags:
-      deploiement_archive
+
 
   #on nettoie avant de partir
 
