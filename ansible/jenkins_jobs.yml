@@ -100,17 +100,11 @@
       last_tag
 
    ### BUILD ###
-   - name: debug nodejs
-     debug: 
-      msg="workspace value:{{project_path}} - npm install into:{{project_path}}/{{src_conf.src_project_subdir}}"
-     tags:
-      dummy 
-
    - name: debug
      debug: 
-       msg="Exécution npm install dans le répertoire {{src_conf.src_project_subdir}}"
+      msg="Exécution npm install dans le répertoire {{project_path}}/{{src_conf.src_project_subdir}}"
      tags:
-       nodejs 
+      nodejs 
 
    - name: Build projet nodejs
      shell: "npm install"
@@ -119,6 +113,12 @@
      tags:
       nodejs
 
+   - name: Archive pour déploiement plus efficace que le module de copie fichier par fichier.... 
+     shell: "tar cvzf youyou.tgz *"
+     args:
+       chdir: "{{project_path}}/{{src_conf.src_project_subdir}}/.."
+     tags:
+      archive_src
 
    ### POST CONFIGURATION ###
 
@@ -149,10 +149,26 @@
    - name: Déploiement du projet sur les serveurs cibles
      copy:  
       src="../"
+      #src="/var/jenkins_home/jobs/test_default_workspace/workspace/"
       dest="{{project_path}}/{{project_name}}"
      tags:
       deploiement
 
+   - name: Déploiement de l'archive sur les serveurs cibles 
+     copy:  
+      src="youyou.tgz"
+      dest="{{project_path}}"
+     tags:
+      archive_src
+
+   - name: Déploiement de l'archive sur les serveurs cibles 
+     shell: "tar xvzf youyou.tgz -C {{project_path}}/{{project_name}}"
+     args:
+       chdir: "{{project_path}}"
+     tags:
+      archive_src
+
+  #on nettoie avant de partir
 
   #### BUILD ####
   # gestion de bower (tag angular)
