@@ -105,6 +105,7 @@
        msg="Exécution npm install dans le répertoire {{src_conf.src_project_subdir}}"
      tags:
        nodejs 
+
    - name: Build projet nodejs
      shell: "npm install"
      args:
@@ -156,3 +157,9 @@
 
   #### Smoke tests ####
   # un petit curl sur les apis ne ferait pas de mal ?
+
+  - name: debug
+    debug: 
+     msg="tache bidon"
+    tags:
+     dummy 
