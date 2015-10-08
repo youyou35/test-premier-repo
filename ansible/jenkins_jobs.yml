@@ -100,6 +100,12 @@
       last_tag
 
    ### BUILD ###
+   - name: debug nodejs
+     debug: 
+      msg="workspace value:{{project_path}} - npm install into:{{project_path}}/{{src_conf.src_project_subdir}}"
+     tags:
+      dummy 
+
    - name: debug
      debug: 
        msg="Exécution npm install dans le répertoire {{src_conf.src_project_subdir}}"
@@ -112,6 +118,7 @@
        chdir: "{{project_path}}/{{src_conf.src_project_subdir}}"
      tags:
       nodejs
+
 
    ### POST CONFIGURATION ###
 
@@ -160,6 +167,6 @@
 
    - name: debug
      debug: 
-      msg="tache bidon"
+      msg="tache bidon- workspace value:{{project_path}}"
      tags:
       dummy 
