@@ -52,7 +52,6 @@
       - deploiement_params.yml
      tags:
       post_conf
-      nodejs
 
    ####  usages de GIT (non utilisé par jenkins, il le fait mieux tout seul ###
    ### Par commit ###
