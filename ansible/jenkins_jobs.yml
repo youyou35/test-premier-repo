@@ -114,7 +114,7 @@
       nodejs
 
    - name: Archive pour déploiement plus efficace que le module de copie fichier par fichier.... 
-     shell: "tar cvzf youyou.tgz *"
+     shell: "tar cvzf /tmp/{{project_name}}.tgz *"
      args:
        chdir: "{{project_path}}/{{src_conf.src_project_subdir}}/.."
      tags:
@@ -155,17 +155,17 @@
 
    - name: Déploiement de l'archive sur les serveurs cibles 
      copy:  
-      src="youyou.tgz"
+      src="/tmp/youyou.tgz"
       dest="{{project_path}}"
      tags:
-      archive_src
+      deploiement_archive
 
    - name: Déploiement de l'archive sur les serveurs cibles 
      shell: "tar xvzf youyou.tgz -C {{project_path}}/{{project_name}}"
      args:
        chdir: "{{project_path}}"
      tags:
-      archive_src
+      deploiement_archive
 
   #on nettoie avant de partir
 
