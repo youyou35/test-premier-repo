@@ -113,15 +113,7 @@
      tags:
       nodejs
 
-   - name: Archive pour déploiement plus efficace que le module de copie fichier par fichier.... 
-     shell: "tar cvzf /tmp/youyou.tgz * 2>&1 > /dev/null"
-     args:
-       chdir: "{{project_path}}/{{src_conf.src_project_subdir}}/.."
-     tags:
-      archive_src
-
    ### POST CONFIGURATION ###
-
    - name: Création des liens symboliques décrits dans ansible/deploiement_params.yml
      file: state=link 
       src="{{target_env}}.{{item.value.src_name}}"
@@ -130,6 +122,13 @@
      with_dict: "{{configuration_files}}"
      tags:
       post_conf
+
+   - name: Archive pour déploiement plus efficace que le module de copie fichier par fichier.... 
+     shell: "tar cvzf /tmp/youyou.tgz * 2>&1 > /dev/null"
+     args:
+       chdir: "{{project_path}}"
+     tags:
+      archive_src
 
    # TODO ? : découvrir les fichiers de conf par filtrages sur noms de fichiers dans le projet et lien symbolique dans la foulée
    #          Très axé conventions, pratique mais moins évident qu'une déclaration explicite en bonne et due forme.
@@ -153,22 +152,10 @@
      tags:
       deploiement
 
-   # - name: Déploiement de l'archive sur les serveurs cibles 
-   #   copy:  
-   #    src="/tmp/youyou.tgz"
-   #    dest="{{project_path}}"
-   #   tags:
-   #    deploiement_archive
-
-   # - name: Déploiement de l'archive sur les serveurs cibles 
-   #   shell: "tar xvzf youyou.tgz -C {{project_path}}/{{project_name}}"
-   #   args:
-   #     chdir: "{{project_path}}"
-   #   tags:
-   #    deploiement_archive
+   # autre version: on crée le répertoire cible et on copie/décompresse une archive dedans - plus joli
    - name: Création du répertoire projet sur les serveurs cibles
      file: 
-      path="{{project_path}}/{{project_name}}" 
+      path="{{project_path}}/{{project_name}}"
       state=directory
      tags:
       deploiement_archive
@@ -180,6 +167,12 @@
      tags:
       deploiement_archive
 
+   # - name: Suppression de l'archive
+   #   file: 
+   #    path="{{project_path}}/{{project_name}}/youyou.tgz"
+   #    state=absent
+   #   tags:
+   #    deploiement_archive
 
 
   #on nettoie avant de partir
