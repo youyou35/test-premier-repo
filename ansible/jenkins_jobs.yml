@@ -124,7 +124,7 @@
       post_conf
 
    - name: Archive pour déploiement plus efficace que le module de copie fichier par fichier.... 
-     shell: "tar cvzf /tmp/youyou.tgz * 2>&1 > /dev/null"
+     shell: "tar cvzf /tmp/{{project_name}}.tgz * 2>&1 > /dev/null"
      args:
        chdir: "{{project_path}}"
      tags:
@@ -133,6 +133,7 @@
    # TODO ? : découvrir les fichiers de conf par filtrages sur noms de fichiers dans le projet et lien symbolique dans la foulée
    #          Très axé conventions, pratique mais moins évident qu'une déclaration explicite en bonne et due forme.
    #          De toutes façons c'est ansible > 2.0 donc pas encore mûr pour exploitation (pas encore sorti en stable)
+   #
    # - name: Liste tous les fichiers de conf du projet lié à l'environnement cible
    #   find:
    #    paths="{{project_path}}/{{project_name}}"
@@ -142,7 +143,7 @@
    #   tags:
    #    post_conf
 
-  #### Deploiement sur les serveurs cibles ####
+   #### Deploiement sur les serveurs cibles ####
    ### aaarg - ca marche mais ca fait un scp fichier par fichier ... bonjour les perfs!!!!
    ### TODO dans la doc ansible, trouver plus efficace ET élégant (tarball etc ...)
    - name: Déploiement du projet sur les serveurs cibles
@@ -152,7 +153,7 @@
      tags:
       deploiement
 
-   # autre version: on crée le répertoire cible et on copie/décompresse une archive dedans - plus joli
+   # autre version: on crée le répertoire cible et on copie/décompresse une archive dedans - carrément plus rapide!
    - name: Création du répertoire projet sur les serveurs cibles
      file: 
       path="{{project_path}}/{{project_name}}"
@@ -162,7 +163,7 @@
 
    - name: Déploiement du projet sur les serveurs cibles
      unarchive: 
-      src=/tmp/youyou.tgz
+      src="/tmp/{{project_name}}.tgz"
       dest="{{project_path}}/{{project_name}}"
      tags:
       deploiement_archive
