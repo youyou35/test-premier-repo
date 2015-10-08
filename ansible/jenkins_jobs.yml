@@ -103,7 +103,8 @@
    - name: debug
      debug: 
        msg="Exécution npm install dans le répertoire {{src_conf.src_project_subdir}}"
-       
+     tags:
+       nodejs 
    - name: Build projet nodejs
      shell: "npm install"
      args:
