@@ -158,8 +158,8 @@
   #### Smoke tests ####
   # un petit curl sur les apis ne ferait pas de mal ?
 
-  - name: debug
-    debug: 
-     msg="tache bidon"
-    tags:
-     dummy 
+   - name: debug
+     debug: 
+      msg="tache bidon"
+     tags:
+      dummy 
