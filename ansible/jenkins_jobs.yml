@@ -148,7 +148,7 @@
    ### TODO dans la doc ansible, trouver plus efficace ET élégant (tarball etc ...)
    - name: Déploiement du projet sur les serveurs cibles
      copy:  
-      src="../../"
+      src="../"
       dest="{{project_path}}/{{project_name}}"
      tags:
       deploiement
