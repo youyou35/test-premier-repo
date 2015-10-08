@@ -114,7 +114,7 @@
       nodejs
 
    - name: Archive pour déploiement plus efficace que le module de copie fichier par fichier.... 
-     shell: "tar cvzf /tmp/{{project_name}}.tgz *"
+     shell: "tar cvzf /tmp/youyou.tgz *"
      args:
        chdir: "{{project_path}}/{{src_conf.src_project_subdir}}/.."
      tags:
@@ -125,7 +125,7 @@
    - name: Création des liens symboliques décrits dans ansible/deploiement_params.yml
      file: state=link 
       src="{{target_env}}.{{item.value.src_name}}"
-      dest="{{project_path}}/{{project_name}}/{{item.value.src_dir}}{{item.value.src_name}}"
+      dest="{{project_path}}/{{item.value.src_dir}}{{item.value.src_name}}"
       force=yes
      with_dict: "{{configuration_files}}"
      tags:
