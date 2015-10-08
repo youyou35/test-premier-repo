@@ -4,10 +4,16 @@
 #  target_env:  INT/PROD/etc ... utilisé pour le lien symbolique de conf - défaut: none
 #  project_path: path du répertoire racine du projet - défaut: /home/integration - Optionnel
 #
+#  GIT - Utile hors usage via Jenkins
 #  git_url: url du repo git - défaut: none
 #  git_branch:  nom de la branche git - défaut: master - Optionnel
 #  git_revision: nom de la source revision (tag ou commit) - défaut: none - Optionnel
-
+#
+#  Fichier de configuration "deploiement_params.yml"
+#  Dans ce fichier yml, on définit les variables nécessaires aux tags:
+#   - post-conf
+#   - nodejs
+#  Si vous souhaitez utiliser ces tags, la présence de ce fichier est OBLIGATOIRE.
 
 #tags:
     # git_pull          : checkout du dernier commit de la branche
@@ -30,6 +36,7 @@
    target_env: none
    project_name: ""
    project_path: /home/integration
+
    git_url: none
    git_branch: master
    git_revision: none
@@ -37,6 +44,15 @@
   tasks:
    # - fail: msg="Echec, ce playbook nécessite la définition du paramètre suivant [tag_version]"
    #   when: tag_version is undefined
+
+   # On commence par charger si besoin le fichier yaml pour compléter les variables
+   - name: Liste des fichiers à configurer
+     include_vars: "{{item}}"
+     with_first_found:
+      - deploiement_params.yml
+     tags:
+      post_conf
+      nodejs
 
    ####  usages de GIT (non utilisé par jenkins, il le fait mieux tout seul ###
    ### Par commit ###
@@ -88,19 +104,11 @@
    - name: Build projet nodejs
      shell: "npm install"
      args:
-       chdir: "{{project_path}}/api-rubriques-metier/src/main/webapp"
+       chdir: "{{project_path}}/{{src_conf.src_project_subdir}}"
      tags:
       nodejs
 
    ### POST CONFIGURATION ###
-
-   # On charge le fichier yaml qui décrit ce qu'il faut post-configurer
-   - name: Liste des fichiers à configurer
-     include_vars: "{{item}}"
-     with_first_found:
-      - deploiement_params.yml
-     tags:
-      post_conf
 
    - name: Création des liens symboliques décrits dans ansible/deploiement_params.yml
      file: state=link 
@@ -124,6 +132,8 @@
    #    post_conf
 
   #### Deploiement sur les serveurs cibles ####
+   ### aaarg - ca marche mais ca fait un scp fichier par fichier ... bonjour les perfs!!!!
+   ### TODO dans la doc ansible, trouver plus efficace ET élégant (tarball etc ...)
    - name: Déploiement du projet sur les serveurs cibles
      copy:  
       src="../../"
@@ -133,7 +143,6 @@
 
 
   #### BUILD ####
-  # gestion de npm (tag nodejs)
   # gestion de bower (tag angular)
   # gestion de ??? (tag flask - python ...)
   

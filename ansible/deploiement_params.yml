@@ -1,4 +1,5 @@
 ---
+# utilisé pour tag 'post_conf'
 configuration_files:
   general_conf:
     src_dir: api-rubriques-metier/src/main/resources/conf/
@@ -9,3 +10,14 @@ configuration_files:
   youyou_conf:
     src_dir: api-rubriques-metier/src/main/resources/
     src_name: youyou.json
+
+#Utilisé pour les builds de projets node & python
+src_conf:
+  # sous-répertoire du project où effectuer effectuer les commandes telles que #>npm install 
+  # cette valeur est concaténée au project_path (racine du git clone)
+  # mettre "" pour les cas simples
+  src_project_subdir: api-rubriques-metier/src/main/webapp
+
+#utilisé pour tag 'python'
+python_conf:
+  python_pew_version: p3.4
