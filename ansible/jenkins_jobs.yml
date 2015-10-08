@@ -149,7 +149,6 @@
    - name: Déploiement du projet sur les serveurs cibles
      copy:  
       src="../"
-      #src="/var/jenkins_home/jobs/test_default_workspace/workspace/"
       dest="{{project_path}}/{{project_name}}"
      tags:
       deploiement
