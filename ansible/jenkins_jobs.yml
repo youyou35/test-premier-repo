@@ -166,6 +166,12 @@
    #     chdir: "{{project_path}}"
    #   tags:
    #    deploiement_archive
+   - name: Création du répertoire projet sur les serveurs cibles
+     file: 
+      path="{{project_path}}/{{project_name}}" 
+      state=directory
+     tags:
+      deploiement_archive
 
    - name: Déploiement du projet sur les serveurs cibles
      unarchive: 
